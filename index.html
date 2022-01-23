@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker App</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <h1 style="font-size: large; font-weight: bolder;">Tracker App</h1>
+        <div class="card-panel blue lighten-5">
+            <h2>
+            My courses in Platzi💚
+            </h2>
+                <form v-on:submit="addCourse">
+                    <input type="text"
+                    placeholder="Titulo del curso"
+                    v-model="courses.title"
+                    />
+                    <input type="number"
+                    placeholder="Horas"
+                    v-model="courses.time"
+                    />
+                        <select style="display: block;
+                        text-align: center;"
+                        class="input-field blue lighten-4"
+                        v-model="courses.stars"
+                        >
+                            <option value="⭐️⭐️⭐️⭐️⭐️" >⭐️⭐️⭐️⭐️⭐️</option>
+                            <option value="⭐️⭐️⭐️⭐️" >⭐️⭐️⭐️⭐️</option>
+                            <option value="⭐️⭐️⭐️" >⭐️⭐️⭐️</option>
+                            <option value="⭐️⭐️" >⭐️⭐️</option>
+                            <option value="⭐️" >⭐️</option>
+                        </select>
+                <button class="btn waves-effect waves-light" type="submit">Save course</button>
+                </form>
+            <h3>Course list</h3>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th> Course </th>
+                        <th>Time</th>
+                        <th>Assessment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  v-for='course in courses'>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.time }} hours</td>
+                        <td>{{ course.stars }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="red-text" v-if="courses.length <= 0">{{ withOutCourseMsg }}</p>
+            <div>
+                <ol>
+                <!-- Lista de cursos -->
+                </ol>
+                <hr/>
+                <p>
+                Llevo <strong>{{ totalTime }}</strong> horas aprendiendo en Platzi.
+                <b>#NuncaParesDeAprender 💚</b>
+                </p>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
